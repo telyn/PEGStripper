@@ -1,0 +1,12 @@
+{
+	"name": "pegstripper",
+	"description": "Strip PEGjs grammars to just the grammar for documentation",
+	"version": "0.1.0",
+	"devDependencies": {
+		"mocha": "*",
+		"should": "*"
+	},
+	"engines": {
+		"node": "0.4.x | 0.6.x | >= 0.8"
+	}
+}

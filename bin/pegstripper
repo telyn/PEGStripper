@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+var pegstrip = require('../lib/pegstrip.js')
+var fs = require('fs');
+
+var input = fs.readFileSync(process.argv[2],'utf8');
+
+console.log(pegstrip(input));
