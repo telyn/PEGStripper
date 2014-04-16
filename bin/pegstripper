@@ -1,7 +1,25 @@
 #!/usr/bin/env node
 var pegstrip = require('../lib/pegstrip.js')
 var fs = require('fs');
+var nopt = require("nopt");
+var path = require("path");
+var knownOpts = { "output": path, "debug": Boolean, "help": Boolean };
+var shorthands = {"o":["--output"], "d":["--debug"], "h":"--help"};
+var parsed = nopt(knownOpts,shorthands, process.argv);
 
-var input = fs.readFileSync(process.argv[2],'utf8');
+if(parsed.argv.remain.length == 0 || parsed.help) {
+	console.log("\nUsage:")
+	console.log("\tpegstripper <options> path");
+	console.log(" ");
+	console.log("Options available:");
+	console.log("\t--help\t- Show this usage info");
+	console.log("\t--debug\t- Enable debug mode (outputs a JSON object for every\n\t\t character, detailing the lexer's state)");
+	process.exit(0);
+}
 
-console.log(pegstrip(input));
+var input = fs.readFileSync(parsed.argv.remain[0],'utf8');
+if(!parsed.output) {
+	console.log(pegstrip(input));
+} else {
+	fs.writeFileSync(parsed.output, pegstrip(input));
+}
