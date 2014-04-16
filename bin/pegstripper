@@ -3,8 +3,8 @@ var pegstrip = require('../lib/pegstrip.js')
 var fs = require('fs');
 var nopt = require("nopt");
 var path = require("path");
-var knownOpts = { "output": path, "debug": Boolean, "help": Boolean };
-var shorthands = {"o":["--output"], "d":["--debug"], "h":"--help"};
+var knownOpts = { "output": path, "debug": Boolean, "help": Boolean, "strip-comments": Boolean };
+var shorthands = {"o":["--output"], "d":["--debug"], "s":["--strip-comments"], "h":["--help"]};
 var parsed = nopt(knownOpts,shorthands, process.argv);
 
 if(parsed.argv.remain.length == 0 || parsed.help) {
@@ -14,12 +14,13 @@ if(parsed.argv.remain.length == 0 || parsed.help) {
 	console.log("Options available:");
 	console.log("\t--help\t- Show this usage info");
 	console.log("\t--debug\t- Enable debug mode (outputs a JSON object for every\n\t\t character, detailing the lexer's state)");
+	console.log("\t--strip-comments - Remove comments from output");
 	process.exit(0);
 }
 
 var input = fs.readFileSync(parsed.argv.remain[0],'utf8');
 if(!parsed.output) {
-	console.log(pegstrip(input,{debug:parsed.debug}));
+	console.log(pegstrip(input,{debug:parsed.debug, strip_comments:parsed['strip-comments']}));
 } else {
-	fs.writeFileSync(parsed.output, pegstrip(input,{debug:parsed.debug}));
+	fs.writeFileSync(parsed.output, pegstrip(input,{debug:parsed.debug, strip_comments:parsed['strip-comments']}));
 }
