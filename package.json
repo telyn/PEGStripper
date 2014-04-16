@@ -1,8 +1,11 @@
 {
-	"name": "PEGStripper",
+	"name": "pegstripper",
 	"description": "Strip PEGjs grammars to just the grammar for documentation",
 	"version": "0.1.0",
 	"repository": "git://github.com/nornalbion/PEGStripper.git",
+	"scripts": {
+		"test": "mocha"
+	},
 	"dependencies": {
 		"nopt": "^2"
 	},
