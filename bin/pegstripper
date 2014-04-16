@@ -19,7 +19,7 @@ if(parsed.argv.remain.length == 0 || parsed.help) {
 
 var input = fs.readFileSync(parsed.argv.remain[0],'utf8');
 if(!parsed.output) {
-	console.log(pegstrip(input));
+	console.log(pegstrip(input,{debug:parsed.debug}));
 } else {
-	fs.writeFileSync(parsed.output, pegstrip(input));
+	fs.writeFileSync(parsed.output, pegstrip(input,{debug:parsed.debug}));
 }
