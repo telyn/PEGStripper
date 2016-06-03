@@ -62,7 +62,7 @@ I don't know why you would do this
 What if it breaks?
 ==================
 
-[Open an issue](http://github.com/nornalbion/PEGStripper.git)
+[Open an issue](http://github.com/telyn/PEGStripper.git)
 
 I hate your readme so much
 ==========================
