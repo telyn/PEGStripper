@@ -7,7 +7,7 @@
 		"test": "mocha"
 	},
 	"dependencies": {
-		"nopt": "^2"
+		"nopt": "^7"
 	},
 	"devDependencies": {
 		"mocha": "*",
